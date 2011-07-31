@@ -15,6 +15,7 @@ class Framewerk_InputData
 	private $is_array;
 	private $optional;
 	private $error;
+	private $number_range;
 
 	private $valid = false; // default to false
 
@@ -57,6 +58,9 @@ class Framewerk_InputData
 		
 		// Set the default error message
 		if(isset($input_definition['error'])) $this->error = $input_definition['error'];
+		
+		// Set the min value
+		if(isset($input_definition['number_range'])) $this->number_range = $input_definition['number_range'];
 
 		// Validate the object
 		$object_valid = $this->filterData($value);
@@ -97,15 +101,36 @@ class Framewerk_InputData
 
 		// If this is optional and we received an empty string, take precedence over other checks.
 		if($this->optional && $value == '') return true;
-		
+
 		// Check max length
 		if($this->max_length && strlen($value) > $this->max_length) return false;
-		
+
 		// Check min length
 		if($this->min_length && strlen($value) < $this->min_length) return false;
-		
+
 		// Check regex
 		if($this->regex && !preg_match($this->regex, $value)) return false;
+
+		// Make sure the number falls within the correct range and precision
+		if($this->number_range)
+		{
+			if(!is_numeric($value)) return false;
+			
+			$dp = strpos($value, '.');
+			
+			// Number contains decimal
+			if($dp !== false)
+			{
+				// Decimal precision not allowed
+				if($this->number_range[2] === 0) return false;
+
+				// Too precise
+				if(strlen(substr($value, $dp + 1)) > $this->number_range[2]) return false;
+			}
+
+			// Within the range
+			if($value < $this->number_range[0] || $value > $this->number_range[1]) return false;
+		}
 
 		// It passed all checks, data is valid
 		return true;		

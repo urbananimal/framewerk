@@ -4,7 +4,7 @@ if(Config::getEnvironment() < Framewerk_Config::ENV_LIVE) require_once 'Debug.ph
 /**
  * Dispatcher Class.
  * Handles all http requests. Instantiates an appropriate controller class for the current request.
- * Sets up the Controllers View with the correct paramters for the requested action
+ * Sets up the Controller's View with the correct paramters for the requested action
  * Attempts to call the requested action, else calls the controller's default action
  * 
  * @author John Smith
