@@ -168,16 +168,12 @@ class Framewerk_View_Helper_HelperHtml
 
 		foreach($options as $key => $val)
 		{
-			// If there is no value attribute for this option, e.g. default selected option 'Please select...'
-			if(!$key)
-			{
-				$output_string .= '<option>' . $val . '</option>';
-				continue;
-			}
+			// Type cast - submitted values should always be a string
+			$key = (string) $key;
 
-			$output_string .= '<option value="'.$key.'" '.(($value_attribute == $key) || (is_array($value_attribute) && in_array($key, $value_attribute)) ? 'selected="selected"' : '').'>'.$val.'</option>'."\n";
+			$output_string .= '<option value="'.$key.'" '.( ($value_attribute === $key) || ( is_array($value_attribute) && in_array($key, $value_attribute, true) ) ? 'selected="selected"' : '').'>'.$val.'</option>'."\n";
 		}
-		
+	
 		echo $output_string."</select>\n";
 	}
 	
