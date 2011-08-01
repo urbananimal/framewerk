@@ -91,7 +91,7 @@ class Framewerk_View_Helper_HelperHtml
 		else 
 		{
 			$request_data = $this->view->getRawData($name_attribute);
-			
+
 			if($request_data instanceof Framewerk_InputData)
 			{
 				$field_value = $request_data->getValue();
@@ -127,47 +127,55 @@ class Framewerk_View_Helper_HelperHtml
 			$element_attributes['class'] = 'select';
 		}
 
-		$selected_value = false;
-		if(isset($element_attributes['value']))
-		{
-			$selected_value = $element_attributes['value'];
-			unset($element_attributes['value']);
-		}
-
-		// Get the options array from the view
-		$options = $this->view->getRawData($select_options_key);
-
-		// See if there is a value for this select box
+		// See if a value has been submitted
 		if(!isset($this->view->$name_attribute))
 		{
-			$value_attribute = '';
+			$value_attribute = null;
+
+			// Not submitted, has a default been passed in the view?
+			if(isset($element_attributes['value']))
+			{
+				$value_attribute = $element_attributes['value'];
+
+				// Remove it from the $element_attributes, so it's not formatted as a normal attribute
+				unset($element_attributes['value']);
+			}
 		}
-		# else, the data exists in the view
-		else 
+		else // else, the data exists in the view
 		{
 			$request_data = $this->view->getRawData($name_attribute);
 
 			if($request_data instanceof Framewerk_InputData)
 			{
 				$value_attribute = $request_data->getValue();
-				// If the requset data was invalid, denote the input element as such
+
+				// If the requset data was invalid, mark the input element as such
 				if(!$request_data->isValid())
 				{
 					$element_attributes['class'] .= ' error';
 				}
 			}
-			else // Normal variable passed
+			else // Normal variable passed from the controller
 			{
 				$value_attribute = $request_data;
 			}
 		}
 
 		$output_string = '<select name="'.$name_attribute.'"'.$this->formatElementAttributesString($element_attributes).'>';
-		
+
 		// Now go through each option. If the we find a match, mark as selected.
+		$options = $this->view->getRawData($select_options_key);
+
 		foreach($options as $key => $val)
 		{
-			$output_string .= '<option value="'.$key.'" '.(($value_attribute == $key) || ($selected_value && $selected_value == $key) ||(is_array($selected_value) && in_array($key, $selected_value)) ? 'selected="selected"' : '').'>'.$val.'</option>'."\n";
+			// If there is no value attribute for this option, e.g. default selected option 'Please select...'
+			if(!$key)
+			{
+				$output_string .= '<option>' . $val . '</option>';
+				continue;
+			}
+
+			$output_string .= '<option value="'.$key.'" '.(($value_attribute == $key) || (is_array($value_attribute) && in_array($key, $value_attribute)) ? 'selected="selected"' : '').'>'.$val.'</option>'."\n";
 		}
 		
 		echo $output_string."</select>\n";
