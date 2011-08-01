@@ -171,6 +171,11 @@ class Framewerk_InputData
 		$this->error = $error_msg;
 		$this->valid = false;
 	}
+	
+	public function setValue($value)
+	{
+		$this->value = $value;
+	}
 
 }
 ?>
