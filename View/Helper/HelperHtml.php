@@ -231,6 +231,7 @@ class Framewerk_View_Helper_HelperHtml
 		
 		foreach($options as $key => $val)
 		{
+			$key = (string) $key;
 			echo '<label><input type="radio" name="'.$name_attribute.'" value="'.$key.'" '.(($field_value == $key) ? 'checked="checked"' : '').$element_attributes_string.'>'.$val.'</label>';
 		}
 	}
