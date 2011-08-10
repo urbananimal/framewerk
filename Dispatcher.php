@@ -14,68 +14,36 @@ class Framewerk_Dispatcher
 {
 	public function __construct()
 	{
-		// If no controller param is set, use the default one.
-		$controller_name = isset($_GET['controller']) ? $_GET['controller'] : Config::getDefaultController();
+		// Get the router object
+		$router = Framewerk_RouterFactory::getRouter();
 
-		// Don't care whether it exists here, let the Autoloader figure that out.
-		$class = 'Controller_'.$controller_name;
 		// Instantiate the controller
-		$controller = new $class;
+		$controller_name = $router->getController();
+		$class_name = 'controller_' . $controller_name;
 
-		// If an action has been passed to route(), attempt to call that.
+		$controller = new $class_name;
+
+		$action_name = $router->getAction();
+
 		// Else, try and call the action sent in request string. If that does not exist, try and get the controllers default action
-		$current_action =  isset($_GET['action']) && is_callable(array($controller, $_GET['action'])) ? $_GET['action'] : $controller->default_action;
-		
+		$action =  is_callable(array($controller, $action_name)) ? $action_name : $controller->default_action;
+
 		// Set some view defaults. Templates are mapped to ControllerName/actionName.tpl.php
 		$controller->view->setController($controller_name);
-		$controller->view->setAction($current_action);
-		
+		$controller->view->setAction($action_name);
+
 		// Does this action have a definition in the controller?
-		$action_definition_name = $current_action.'_definition';
+		$action_definition_name = $action_name.'_definition';
 
 		if(isset($controller->$action_definition_name))
 		{
 			$action_definition = $controller->$action_definition_name;
 
-			$get_params = array();
-			
-			// Prepare the GET params
-			if(isset($_GET['params']))
-			{
-				foreach(explode('/', $_GET['params']) as $key => $val)
-				{
-					if($val !== '') $get_params['param_'.($key+1)] = $val;
-				}
-
-				unset($_GET['controller'], $_GET['action'], $_GET['params']);
-				
-				// Add the re-written params to the GET global.
-				$_GET += $get_params;
-			}
-
-			// Get the data source, as defined in the controller
-			$defined_data_source = isset($action_definition['data_source']) ? $action_definition['data_source'] : null;
-
-			switch($defined_data_source)
-			{
-				case Framewerk_Request::SOURCE_GET:
-						$data_source = $_GET;
-						break;
-				case Framewerk_Request::SOURCE_REQUEST:
-						$data_source = $_POST + $_GET;
-						break;
-				case Framewerk_Request::SOURCE_POST: 
-				default:
-						$data_source = $_POST;
-			}
+			$request_data = $router->getRequestData($action_definition['data_source']);
 
 			// If data_source is empty, do not create the request object
 			// This allows actions to actually check whether an action should be performed, or just view.
-			if(!empty($data_source) || $_SERVER['REQUEST_METHOD'] == 'POST') // Source not empty, or request was POST
-			{
-				// Create the request object for this action
-				$controller->request = new Framewerk_Request($action_definition, $data_source);
-			}
+			if(!empty($request_data)) $controller->request = new Framewerk_Request($action_definition, $request_data);
 		}
 
 		// Pass input data back to the view - before action, so action can overwrite if needed

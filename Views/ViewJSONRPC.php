@@ -1,18 +1,17 @@
 <?php 
-class Framewerk_View_ViewAjax extends Framewerk_View
+class Framewerk_Views_ViewJSONRPC extends Framewerk_Views_View
 {
-	
 	private $redirect_location;
-	
+
 	private $template_name;
-	
+
 	private $html; // An instance of HelperHtml class.
  
 	public function __construct()
 	{
 		$this->html = new Framewerk_View_Helper_HelperHtml($this);
 	}
-	
+
 	public function render()
 	{
 		// Render any elements we have

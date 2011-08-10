@@ -9,16 +9,16 @@ class Framewerk_ViewFactory
 {
 	public static function getView()
 	{
-		// Is this an AJAX request?
-		if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER ['HTTP_X_REQUESTED_WITH']  == 'XMLHttpRequest')
+		switch( $_SERVER['CONTENT_TYPE'] )
 		{
-			return new Framewerk_View_ViewAjax;
+			case 'application/json-rpc':
+				$view = 'Framewerk_View_ViewJSON-RPC';
+				break;
+				
+			default:
+				$view = 'Framewerk_View_ViewHtml';
 		}
-		else
-		{
-			return new Framewerk_View_ViewHtml;
-		}
-		
+
+		return new $view;
 	}
 }
-?>

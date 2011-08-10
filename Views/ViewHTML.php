@@ -1,5 +1,5 @@
 <?php
-class Framewerk_View_ViewHtml extends Framewerk_View
+class Framewerk_Views_ViewHTML extends Framewerk_Views_View
 {
 	// An array of CSS and JS filenames to be include in the <head> of the HTML template.
 	private $head_includes = array();

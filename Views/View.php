@@ -1,5 +1,5 @@
 <?php 
-abstract class Framewerk_View
+abstract class Framewerk_Views_View
 {
 	protected $view_data = array(); // All data available to views
 
