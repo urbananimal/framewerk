@@ -15,7 +15,7 @@ function __autoload($class)
 	// Becuase file / class naming conventions are awesome, this shit is easy.
 	$file_path = (substr($class, 0, 9) == 'Framewerk' ? substr(dirname(__FILE__), 0, -9) : Config::getApplicationRoot() . '/') . str_replace('_', '/', $class).'.php';
 
-	echo 'Attempting to load: ' . $file_path . '<br/>';
+	//echo 'Attempting to load: ' . $file_path . '<br/>';
 
 	if(!file_exists($file_path))
 	{

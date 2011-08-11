@@ -9,7 +9,7 @@ class Framewerk_Views_ViewHTML extends Framewerk_Views_View
 	private $layout_name;
 	// The HTML <title> property value
 	public $page_title;
-	
+
 	private $html; // An instance of HelperHtml class.
 
 	// An array of ads to be displayed by Ad Manger
@@ -17,7 +17,7 @@ class Framewerk_Views_ViewHTML extends Framewerk_Views_View
 
 	public function __construct()
 	{
-		$this->html = new Framewerk_View_Helper_HelperHtml($this);
+		$this->html = new Framewerk_Views_Helpers_HelperHTML($this);
 	}
 
 	/**

@@ -5,11 +5,11 @@
  * @author John Smith.
  *
  */
-class Framewerk_View_Helper_HelperHtml
+class Framewerk_Views_Helpers_HelperHTML
 {
 	private $view; // The view object. I hate myself.
 	
-	public function __construct( Framewerk_View $view )
+	public function __construct( Framewerk_Views_View $view )
 	{
 		$this->view = $view;
 	}

@@ -19,7 +19,7 @@ class Framewerk_Dispatcher
 
 		// Instantiate the controller
 		$controller_name = $router->getController();
-		$class_name = 'controller_' . $controller_name;
+		$class_name = 'Controller_' . $controller_name;
 
 		$controller = new $class_name;
 
@@ -30,7 +30,7 @@ class Framewerk_Dispatcher
 
 		// Set some view defaults. Templates are mapped to ControllerName/actionName.tpl.php
 		$controller->view->setController($controller_name);
-		$controller->view->setAction($action_name);
+		$controller->view->setAction($action);
 
 		// Does this action have a definition in the controller?
 		$action_definition_name = $action_name.'_definition';
@@ -53,7 +53,7 @@ class Framewerk_Dispatcher
 		}
 
 		// Call the action
-		$controller->$current_action();
+		$controller->$action();
 		
 		// Check for invalid / invalidated data, create notices
 		if($controller->request)
