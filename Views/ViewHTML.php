@@ -4,7 +4,7 @@ class Framewerk_Views_ViewHTML extends Framewerk_Views_View
 	// An array of CSS and JS filenames to be include in the <head> of the HTML template.
 	private $head_includes = array();
 	// The template to be rendered. Default to 'index'.
-	private $template_name = 'index';
+	protected $template_name = 'index';
 	// The name of the layout
 	private $layout_name;
 	// The HTML <title> property value
@@ -43,11 +43,6 @@ class Framewerk_Views_ViewHTML extends Framewerk_Views_View
 	public function setLayout($layout_name)
 	{
 		$this->layout_name = $layout_name;
-	}
-
-	public function setTemplate($template_name)
-	{
-		$this->template_name = $template_name;
 	}
 
 	/**

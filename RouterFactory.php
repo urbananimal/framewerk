@@ -6,7 +6,7 @@ class Framewerk_RouterFactory
 		switch( isset($_SERVER['CONTENT_TYPE']) ? $_SERVER['CONTENT_TYPE'] : null )
 		{
 			case 'application/json-rpc':
-				$router = 'Framewerk_Routers_RoutersJSONRPC';
+				$router = 'Framewerk_Routers_RouterJSONRPC';
 				break;
 				
 			default:

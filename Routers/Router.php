@@ -15,5 +15,7 @@ abstract class Framewerk_Routers_Router
 	}
 
 	abstract public function getRequestData($source);
+	
+	public function getRequestId(){}
 }
 ?>

@@ -38,14 +38,5 @@ abstract class Framewerk_Controller
 
 		exit;
 	}
-
-	/**
-	 * Allow returns true when HTTP_X_REQUESTED_WITH is set and == 'XMLHttpRequest'
-	 * @return boolean
-	 */
-	protected function isAjaxRequest()
-	{
-		return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER ['HTTP_X_REQUESTED_WITH']  == 'XMLHttpRequest';
-	}
 }
 ?>

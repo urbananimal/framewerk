@@ -31,6 +31,7 @@ class Framewerk_Dispatcher
 		// Set some view defaults. Templates are mapped to ControllerName/actionName.tpl.php
 		$controller->view->setController($controller_name);
 		$controller->view->setAction($action);
+		$controller->view->setRequestId($router->getRequestId());
 
 		// Does this action have a definition in the controller?
 		$action_definition_name = $action_name.'_definition';

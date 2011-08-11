@@ -2,32 +2,41 @@
 class Framewerk_Views_ViewJSONRPC extends Framewerk_Views_View
 {
 	private $redirect_location;
-
-	private $template_name;
-
-	private $html; // An instance of HelperHtml class.
  
-	public function __construct()
-	{
-		$this->html = new Framewerk_View_Helper_HelperHtml($this);
-	}
-
 	public function render()
 	{
 		// Render any elements we have
-		//$rendered_elements = array();
-		
-		//$path_to_elements = Config::getElementPath();
+		$rendered_elements = array();
 
-		//foreach($this->elements as $element_name => $template)
-		//{
-		//	$rendered_elements[$element_name] = $this->captureTemplateOutput($path_to_elements . '/'. $template);
-		//}
+		$path_to_elements = Config::getElementPath();
+
+		foreach($this->elements as $element_name => $element_template)
+		{
+			$rendered_elements[$element_name] = $this->renderElement($path_to_elements . '/'. $element_template);
+		}
 
 		header('Cache-Control: no-cache, must-revalidate');
 		header('Expires: Fri, 20 Dec 1985 12:00:00 GMT');
-		header('Content-type: application/json');
-		echo json_encode(
+		header('Content-type: application/json-rpc');
+		
+		$response = array
+		(
+			'id' =>  $this->request_id,
+			'jsonrpc' => '2.0',
+			'result' => array
+			(
+				'view_data' => $this->view_data,
+				'elements' => $rendered_elements,
+				//'template' => $template,
+				'redirect' => $this->redirect_location
+			)
+		);
+
+		echo json_encode($response);
+
+		/*
+		 * 
+		 *echo json_encode(
 			array
 			(		
 				'view_data' => $this->view_data,
@@ -41,6 +50,7 @@ class Framewerk_Views_ViewJSONRPC extends Framewerk_Views_View
 				
 			)
 		);
+		*/
 
 		exit;
 	}
@@ -55,13 +65,13 @@ class Framewerk_Views_ViewJSONRPC extends Framewerk_Views_View
 		$this->redirect_location = $location;
 	}
 	
-	protected function renderElement($element_name)
+	protected function renderElement($element_path)
 	{
-		echo '<div id="'.$element_name.'"></div>';
+		 return $this->captureTemplateOutput($element_path);
 	}
-	
+
 	/**
-	 * Capture the output from a template so we can send it via AJAX.
+	 * Capture the output from a template so we can send it via JSON-RPC.
 	 * 
 	 * @param string $path_to_template
 	 */
@@ -72,11 +82,6 @@ class Framewerk_Views_ViewJSONRPC extends Framewerk_Views_View
 		return ob_get_clean();
 	}
 
-	public function setTemplate($template_name)
-	{
-		$this->template_name = $template_name;
-	}
-	
 	/**
 	 * 
 	 * @see Framewerk_View::renderNotices()

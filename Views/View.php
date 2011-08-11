@@ -1,19 +1,27 @@
 <?php 
 abstract class Framewerk_Views_View
 {
+	protected $template_name;
+
 	protected $view_data = array(); // All data available to views
 
 	protected $elements = array(); // Elements can be set within a controller then rendered from the template
-	
+
 	protected $notices = array(); // Holds any notices that may have been set.
-	
+
 	protected $controller; // The current controller.
 	protected $action; // The current action being performed.
+	protected $request_id;
 
 	public function setData(array $view_data)
 	{
 		// Most recently passed data takes precedence
 		$this->view_data = $view_data + $this->view_data;
+	}
+
+	public function setTemplate($template_name)
+	{
+		$this->template_name = $template_name;
 	}
 
 	/**
@@ -88,6 +96,11 @@ abstract class Framewerk_Views_View
 	public function setAction($action)
 	{
 		$this->action = $action;
+	}
+
+	public function setRequestId($request_id)
+	{
+		$this->request_id = $request_id;
 	}
 
 	// Outputs the finalised content of the view to the user.
