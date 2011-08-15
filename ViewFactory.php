@@ -9,14 +9,13 @@ class Framewerk_ViewFactory
 {
 	public static function getView()
 	{
-		switch( isset($_SERVER['CONTENT_TYPE']) ? $_SERVER['CONTENT_TYPE'] : null )
+		if( isset($_SERVER['CONTENT_TYPE']) && strstr($_SERVER['CONTENT_TYPE'], 'application/json-rpc') !== false)
 		{
-			case 'application/json-rpc':
-				$view = 'Framewerk_Views_ViewJSONRPC';
-				break;
-				
-			default:
-				$view = 'Framewerk_Views_ViewHTML';
+			$view = 'Framewerk_Views_ViewJSONRPC';
+		}
+		else
+		{
+			$view = 'Framewerk_Views_ViewHTML';
 		}
 
 		return new $view;

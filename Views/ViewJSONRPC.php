@@ -1,8 +1,15 @@
-<?php 
+<?php
 class Framewerk_Views_ViewJSONRPC extends Framewerk_Views_View
 {
 	private $redirect_location;
- 
+	
+	private $html;
+
+	public function __construct()
+	{
+		$this->html = new Framewerk_Views_Helpers_HelperHTML($this);
+	}
+
 	public function render()
 	{
 		// Render any elements we have
@@ -12,7 +19,7 @@ class Framewerk_Views_ViewJSONRPC extends Framewerk_Views_View
 
 		foreach($this->elements as $element_name => $element_template)
 		{
-			$rendered_elements[$element_name] = $this->renderElement($path_to_elements . '/'. $element_template);
+			$rendered_elements[$element_name] = $this->renderElement($path_to_elements . '/'. $element_template . '.tpl.php');
 		}
 
 		header('Cache-Control: no-cache, must-revalidate');
@@ -28,7 +35,8 @@ class Framewerk_Views_ViewJSONRPC extends Framewerk_Views_View
 				'view_data' => $this->view_data,
 				'elements' => $rendered_elements,
 				//'template' => $template,
-				'redirect' => $this->redirect_location
+				'redirect' => $this->redirect_location,
+				'title' => $this->getTitle()
 			)
 		);
 

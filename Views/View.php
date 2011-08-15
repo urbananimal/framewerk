@@ -12,6 +12,7 @@ abstract class Framewerk_Views_View
 	protected $controller; // The current controller.
 	protected $action; // The current action being performed.
 	protected $request_id;
+	protected $title;
 
 	public function setData(array $view_data)
 	{
@@ -22,6 +23,16 @@ abstract class Framewerk_Views_View
 	public function setTemplate($template_name)
 	{
 		$this->template_name = $template_name;
+	}
+
+	public function setTitle($title, $append = false)
+	{
+		$this->title = ($append ? $this->title : '') . $title;
+	}
+	
+	public function getTitle()
+	{
+		return $this->title;
 	}
 
 	/**
