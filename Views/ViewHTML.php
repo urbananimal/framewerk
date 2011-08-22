@@ -115,5 +115,11 @@ class Framewerk_Views_ViewHTML extends Framewerk_Views_View
 	{
 		return $this->ad_manager_ads;
 	}
+	
+	public function redirect($where)
+	{
+		header('Location: '. $where);
+		exit;
+	}
 }
 ?>

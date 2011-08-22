@@ -37,23 +37,14 @@ class Framewerk_Views_Helpers_HelperHTML
 		if(isset($element_attributes['readonly']) && !$element_attributes['readonly']) unset($element_attributes['readonly']);
 
 		// try and get the field from the view
-		if(!isset($this->view->$name_attribute))
-		{
-			$value_attribute = '';
-			// Was the value set in the template? Use it, else overwritten. For example text etc.
-			if(isset($element_attributes['value']))
-			{
-				$value_attribute = $element_attributes['value'];
-				unset($element_attributes['value']);
-			}
-		}
-		else // else, the data exists in the view
+		if(isset($this->view->$name_attribute))
 		{
 			$request_data = $this->view->getRawData($name_attribute);
 
 			if($request_data instanceof Framewerk_InputData)
 			{
 				$value_attribute = $request_data->getValue();
+
 				// If the requset data was invalid, denote the input element as such
 				if(!$request_data->isValid())
 				{
@@ -64,9 +55,22 @@ class Framewerk_Views_Helpers_HelperHTML
 			{
 				$value_attribute = $request_data;
 			}
+			
+			unset($element_attributes['value']);
 		}
-		
-		# Output the input field. Hot.
+		// Was the value set in the template? Use it, else overwritten. For example text etc.
+		else if(isset($element_attributes['value']))
+		{
+			$value_attribute = $element_attributes['value'];
+			$element_attributes['class'] .= ' eg';
+			unset($element_attributes['value']);
+		}
+		else // else, the data does not exist
+		{
+			$value_attribute = '';	
+		}
+
+		// Output the input field. Hot.
 		echo '<input name="'.$name_attribute.'" value="'.$value_attribute.'"'. $this->formatElementAttributesString($element_attributes) .'/>'."\n";
 	}
 	

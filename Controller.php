@@ -16,27 +16,5 @@ abstract class Framewerk_Controller
 	{
 		$this->view = Framewerk_ViewFactory::getView();
 	}
-
-	/**
-	 * Convenience method for header('Location'.blah blah uri);
-	 * Sends a redirect to the user's browser
-	 * 
-	 * @param string $location
-	 */
-	protected function redirect($location)
-	{
-		if($this->isAjaxRequest())
-		{
-			$this->view->setRedirect($location);
-			$this->view->render();
-			exit;
-		}
-		else
-		{
-			header('Location: '.$location);
-		}
-
-		exit;
-	}
 }
 ?>

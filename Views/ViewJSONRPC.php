@@ -68,9 +68,10 @@ class Framewerk_Views_ViewJSONRPC extends Framewerk_Views_View
 	 * (When used with ajax.js
 	 * @param unknown_type $location
 	 */
-	public function setRedirect($location)
+	public function redirect($where)
 	{
-		$this->redirect_location = $location;
+		$this->redirect_location = $where;
+		$this->render();
 	}
 	
 	protected function renderElement($element_path)

@@ -122,5 +122,7 @@ abstract class Framewerk_Views_View
 	
 	// Render any notices set in the controller
 	abstract protected function renderNotices($notice_type);
+	
+	abstract public function redirect($where);
 }
 ?>
