@@ -1,6 +1,22 @@
 <?php
 if(Config::getEnvironment() < Framewerk_Config::ENV_LIVE) require_once 'Debug.php';
 
+
+/**
+ * Make all errors throw exceptions
+ * 
+ * @param unknown_type $errno
+ * @param unknown_type $errstr
+ * @param unknown_type $errfile
+ * @param unknown_type $errline
+ */
+function errorHandler($error_num, $error_string, $errfile, $errline)
+{
+	throw new Exception($error_string, $error_num);
+}
+
+set_error_handler('errorHandler');
+
 /**
  * Dispatcher Class.
  * Handles all http requests. Instantiates an appropriate controller class for the current request.

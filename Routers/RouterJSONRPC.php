@@ -9,8 +9,8 @@ class Framewerk_Routers_RouterJSONRPC extends Framewerk_Routers_Router
 		$this->controller = isset($_GET['controller']) ? $_GET['controller'] : Config::getDefaultController();
 
 		$request = json_decode(file_get_contents('php://input'));
-		
-		$this->action = $request->method;
+
+		$this->action = isset($request->method) ? $request->method : null;
 
 		$this->request_data = isset($request->params) ? $request->params : null;
 		
@@ -19,9 +19,9 @@ class Framewerk_Routers_RouterJSONRPC extends Framewerk_Routers_Router
 
 	public function getRequestData($source)
 	{
-		return $this->request_data;
+		return (array) $this->request_data;
 	}
-	
+
 	public function getRequestId()
 	{
 		return $this->request_id;
