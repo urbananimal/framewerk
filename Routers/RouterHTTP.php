@@ -18,6 +18,7 @@ class Framewerk_Routers_RouterHTTP extends Framewerk_Routers_Router
 		{
 			case Framewerk_Request::SOURCE_GET:
 
+				$get_params = array();
 				foreach(explode('/', $_GET['params']) as $key => $val)
 				{
 					if($val !== '') $get_params['param_'.($key+1)] = $val;
