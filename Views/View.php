@@ -51,9 +51,10 @@ abstract class Framewerk_Views_View
 	 * @param $element array - a key => value pair of element_name => element template filename
 	 * @return void
 	 */
-	public function setElement(array $element)
+	public function setElement(array $elements)
 	{
-		$this->elements += $element;
+		// Most recently passed element takes precedence
+		$this->elements = $elements + $this->elements;
 	}
 	
 	/**
