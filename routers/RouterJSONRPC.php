@@ -1,5 +1,5 @@
 <?php
-class Framewerk_Routers_RouterJSONRPC extends Framewerk_Routers_Router
+class framewerk_routers_RouterJSONRPC extends framewerk_routers_Router
 {
 	private $request_data;
 	private $request_id;

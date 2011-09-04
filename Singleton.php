@@ -6,7 +6,7 @@
  * @version 1.0.5
  *
  */
-class Framewerk_Singleton
+class framewerk_Singleton
 {
 	protected static $instances = array(); // Stores all current instances
 

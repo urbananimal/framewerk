@@ -6,7 +6,7 @@
  * @version 1.0.1
  *
  */
-class Framewerk_InputData
+class framewerk_InputData
 {	
 	private $value;
 	private $regex;

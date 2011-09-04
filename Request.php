@@ -7,7 +7,7 @@
  * @author John Smith
  * @version 0.0.2
  */
-class Framewerk_Request
+class framewerk_Request
 {
 	const SOURCE_POST = 0;
 	const SOURCE_GET = 1;
@@ -26,7 +26,7 @@ class Framewerk_Request
 			$input_data_value = isset($source_data[$param_name]) ? $source_data[$param_name] : (isset($input_definition['alias']) && isset($source_data[$input_definition['alias']]) ? $source_data[$input_definition['alias']] : null);
 			
 			// Add the InpurData object to the request's array of input data objects
-			$this->input_data_objects[(isset($input_definition['alias']) ? $input_definition['alias'] : $param_name)] = new Framewerk_InputData($input_definition, $input_data_value);
+			$this->input_data_objects[(isset($input_definition['alias']) ? $input_definition['alias'] : $param_name)] = new framewerk_InputData($input_definition, $input_data_value);
 		}		
 	}
 

@@ -1,5 +1,5 @@
 <?php
-interface Framewerk_Config
+interface framewerk_Config
 {
 	const ENV_DEV = 0;
 	const ENV_STAGE = 1;

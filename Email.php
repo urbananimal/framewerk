@@ -10,7 +10,7 @@
  * @version		1.0.1
  * @project		Framewerk
  */
-class Framewerk_Email
+class framewerk_Email
 {	
 	// The template data avaialble to the email templates.
 	private $template_data = array();

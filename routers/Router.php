@@ -1,5 +1,5 @@
 <?php 
-abstract class Framewerk_Routers_Router
+abstract class framewerk_routers_Router
 {
 	protected $controller;
 	protected $action;

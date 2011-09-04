@@ -1,5 +1,5 @@
 <?php
-class Framewerk_Views_ViewHTML extends Framewerk_Views_View
+class framewerk_views_ViewHTML extends framewerk_views_View
 {
 	// An array of CSS and JS filenames to be include in the <head> of the HTML template.
 	private $head_includes = array();
@@ -17,12 +17,12 @@ class Framewerk_Views_ViewHTML extends Framewerk_Views_View
 
 	public function __construct()
 	{
-		$this->html = new Framewerk_Views_Helpers_HelperHTML($this);
+		$this->html = new framewerk_views_helpers_HelperHTML($this);
 	}
 
 	/**
 	 * (non-PHPdoc)
-	 * @see Framewerk_View#render()
+	 * @see framewerk_View#render()
 	 * 
 	 * @param $force_template - ignore the layout and only render the template. Useful when used from within templates
 	 */
@@ -59,7 +59,7 @@ class Framewerk_Views_ViewHTML extends Framewerk_Views_View
 	/**
 	 * Overwrites parent action. Allows a template to be set based up the current action name.
 	 * 
-	 * @see Framewerk_View#setAction($action)
+	 * @see framewerk_View#setAction($action)
 	 */
 	public function setAction($action)
 	{
@@ -97,7 +97,7 @@ class Framewerk_Views_ViewHTML extends Framewerk_Views_View
 
 	protected function renderNotices($notice_type)
 	{
-		include Config::getLayoutPath().'/'.$this->layout_name.'/' . ($notice_type == Framewerk_Notice::TYPE_ERROR ? 'noticeError' : 'noticeSuccess') . '.tpl.php';
+		include Config::getLayoutPath().'/'.$this->layout_name.'/' . ($notice_type == framewerk_Notice::TYPE_ERROR ? 'noticeError' : 'noticeSuccess') . '.tpl.php';
 	}
 
 	/**

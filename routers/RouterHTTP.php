@@ -1,5 +1,5 @@
 <?php
-class Framewerk_Routers_RouterHTTP extends Framewerk_Routers_Router
+class framewerk_routers_RouterHTTP extends framewerk_routers_Router
 {
 	public function __construct()
 	{
@@ -16,7 +16,7 @@ class Framewerk_Routers_RouterHTTP extends Framewerk_Routers_Router
 	{
 		switch($source)
 		{
-			case Framewerk_Request::SOURCE_GET:
+			case framewerk_Request::SOURCE_GET:
 
 				$get_params = array();
 				foreach(explode('/', $_GET['params']) as $key => $val)
@@ -30,11 +30,11 @@ class Framewerk_Routers_RouterHTTP extends Framewerk_Routers_Router
 				$request_data = $_GET += $get_params;
 				break;
 
-			case Framewerk_Request::SOURCE_REQUEST:
+			case framewerk_Request::SOURCE_REQUEST:
 					$request_data = $_POST + $_GET;
 					break;
 
-			case Framewerk_Request::SOURCE_POST:
+			case framewerk_Request::SOURCE_POST:
 			default:
 					$request_data = $_POST;
 					break;

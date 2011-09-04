@@ -6,7 +6,7 @@
  * 
  * @author John
  */
-class Framewerk_Notice
+class framewerk_Notice
 {
 	const TYPE_ERROR = 0;
 	const TYPE_SUCCESS = 1;

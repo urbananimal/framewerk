@@ -5,7 +5,7 @@
  * @author John Smith
  * @version 1.0.1
  */
-abstract class Framewerk_Controller
+abstract class framewerk_Controller
 {	
 	public $view; // Instance of View class.
 	public $request; // Instance of Request class
@@ -14,7 +14,7 @@ abstract class Framewerk_Controller
 
 	public function __construct()
 	{
-		$this->view = Framewerk_ViewFactory::getView();
+		$this->view = framewerk_ViewFactory::getView();
 	}
 }
 ?>

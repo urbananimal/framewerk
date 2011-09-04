@@ -5,11 +5,11 @@
  * @author John Smith.
  *
  */
-class Framewerk_Views_Helpers_HelperHTML
+class framewerk_views_helpers_HelperHTML
 {
 	private $view; // The view object. I hate myself.
 	
-	public function __construct( Framewerk_Views_View $view )
+	public function __construct( framewerk_Views_View $view )
 	{
 		$this->view = $view;
 	}
@@ -41,7 +41,7 @@ class Framewerk_Views_Helpers_HelperHTML
 		{
 			$request_data = $this->view->getRawData($name_attribute);
 
-			if($request_data instanceof Framewerk_InputData)
+			if($request_data instanceof framewerk_InputData)
 			{
 				$value_attribute = $request_data->getValue();
 
@@ -96,7 +96,7 @@ class Framewerk_Views_Helpers_HelperHTML
 		{
 			$request_data = $this->view->getRawData($name_attribute);
 
-			if($request_data instanceof Framewerk_InputData)
+			if($request_data instanceof framewerk_InputData)
 			{
 				$field_value = $request_data->getValue();
 				// If the requset data was invalid, denote the input element as such
@@ -149,7 +149,7 @@ class Framewerk_Views_Helpers_HelperHTML
 		{
 			$request_data = $this->view->getRawData($name_attribute);
 
-			if($request_data instanceof Framewerk_InputData)
+			if($request_data instanceof framewerk_InputData)
 			{
 				$value_attribute = $request_data->getValue();
 
@@ -211,7 +211,7 @@ class Framewerk_Views_Helpers_HelperHTML
 		else 
 		{
 			$request_data = $this->view->getRawData($name_attribute);
-			if($request_data instanceof Framewerk_InputData)
+			if($request_data instanceof framewerk_InputData)
 			{
 				$field_value = $request_data->getValue();
 				// If the requset data was invalid, denote the input element as such
@@ -262,7 +262,7 @@ class Framewerk_Views_Helpers_HelperHTML
 		{
 			$request_data = $this->view->getRawData($name_attribute);
 			
-			if($request_data instanceof Framewerk_InputData)
+			if($request_data instanceof framewerk_InputData)
 			{
 				$field_value = $request_data->getValue();
 				// If the requset data was invalid, denote the input element as such

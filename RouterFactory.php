@@ -1,15 +1,15 @@
 <?php 
-class Framewerk_RouterFactory
+class framewerk_RouterFactory
 {
 	public static function getRouter()
 	{
 		if( isset($_SERVER['CONTENT_TYPE']) && strstr($_SERVER['CONTENT_TYPE'], 'application/json-rpc') !== false)
 		{
-			$router = 'Framewerk_Routers_RouterJSONRPC';
+			$router = 'framewerk_routers_RouterJSONRPC';
 		}
 		else
 		{
-			$router = 'Framewerk_Routers_RouterHTTP';
+			$router = 'framewerk_routers_RouterHTTP';
 		}
 
 		return new $router;

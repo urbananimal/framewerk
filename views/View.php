@@ -1,5 +1,5 @@
 <?php 
-abstract class Framewerk_Views_View
+abstract class framewerk_views_View
 {
 	protected $template_name;
 
@@ -41,9 +41,9 @@ abstract class Framewerk_Views_View
 	 * @param $notice string
 	 * @return void
 	 */
-	public function setNotice($notice, $notice_type = Framewerk_Notice::TYPE_ERROR)
+	public function setNotice($notice, $notice_type = framewerk_Notice::TYPE_ERROR)
 	{
-		Framewerk_Notice::setNotice($notice, $notice_type);
+		framewerk_Notice::setNotice($notice, $notice_type);
 	}
 
 	/**
@@ -81,7 +81,7 @@ abstract class Framewerk_Views_View
 	public function __get($var_name)
 	{
 		// @todo - InputData objects now have __toString() method. Might be able to use that, rather than the below.
-		return ($var = $this->view_data[$var_name]) instanceof Framewerk_InputData ? $var->getValue() : $var;
+		return ($var = $this->view_data[$var_name]) instanceof framewerk_InputData ? $var->getValue() : $var;
 	}
 
 	/**

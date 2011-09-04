@@ -1,5 +1,5 @@
 <?php
-class Framewerk_Views_ViewJSONRPC extends Framewerk_Views_View
+class framewerk_views_ViewJSONRPC extends framewerk_views_View
 {
 	private $redirect_location;
 
@@ -7,7 +7,7 @@ class Framewerk_Views_ViewJSONRPC extends Framewerk_Views_View
 
 	public function __construct()
 	{
-		$this->html = new Framewerk_Views_Helpers_HelperHTML($this);
+		$this->html = new framewerk_views_helpers_HelperHTML($this);
 	}
 
 	public function render()
@@ -21,13 +21,13 @@ class Framewerk_Views_ViewJSONRPC extends Framewerk_Views_View
 		}
 
 		// Has there been an error?
-		if( ($errors = $this->renderNotices(Framewerk_Notice::TYPE_ERROR)) )
+		if( ($errors = $this->renderNotices(framewerk_Notice::TYPE_ERROR)) )
 		{
 			$invalid_fields = array();
 
 			foreach($this->view_data as $name => $input_data_object)
 			{
-				if( !($input_data_object instanceof Framewerk_InputData) || $input_data_object->isValid() ) continue;
+				if( !($input_data_object instanceof framewerk_InputData) || $input_data_object->isValid() ) continue;
 				$invalid_fields[] = $name;
 			}
 
@@ -56,7 +56,7 @@ class Framewerk_Views_ViewJSONRPC extends Framewerk_Views_View
 					'template' => $this->template_name ? $this->captureTemplateOutput(Config::getTemplatePath().'/'.$this->controller.'/'.$this->template_name.'.tpl.php') : null,
 					'redirect' => $this->redirect_location,
 					'title' => $this->getTitle(),
-					'notices' => $this->renderNotices(Framewerk_Notice::TYPE_SUCCESS)
+					'notices' => $this->renderNotices(framewerk_Notice::TYPE_SUCCESS)
 				)
 			);
 		}
@@ -89,7 +89,7 @@ class Framewerk_Views_ViewJSONRPC extends Framewerk_Views_View
 	 * When called from within a template, the output should be included.
 	 * When called from within ViewJSONRPC itself, the output should be returned.
 	 *
-	 * @see Framewerk_Views_View::renderElement()
+	 * @see framewerk_Views_View::renderElement()
 	 */
 	protected function renderElement($element_name, $return_output = false)
 	{
@@ -120,11 +120,11 @@ class Framewerk_Views_ViewJSONRPC extends Framewerk_Views_View
 
 	/**
 	 * 
-	 * @see Framewerk_View::renderNotices()
+	 * @see framewerk_View::renderNotices()
 	 */
 	protected function renderNotices($notice_type = null)
 	{
-		return Framewerk_Notice::getNotices($notice_type);
+		return framewerk_Notice::getNotices($notice_type);
 	}
 }
 ?>

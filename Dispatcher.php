@@ -1,5 +1,5 @@
 <?php
-if(Config::getEnvironment() < Framewerk_Config::ENV_LIVE) require_once 'Debug.php';
+if(Config::getEnvironment() < framewerk_Config::ENV_LIVE) require_once 'Debug.php';
 
 
 /**
@@ -26,16 +26,16 @@ set_error_handler('errorHandler');
  * @author John Smith
  * @version 1.1.3
  */
-class Framewerk_Dispatcher
+class framewerk_Dispatcher
 {
 	public function __construct()
 	{
 		// Get the router object
-		$router = Framewerk_RouterFactory::getRouter();
+		$router = framewerk_RouterFactory::getRouter();
 
 		// Instantiate the controller
 		$controller_name = $router->getController();
-		$class_name = 'Controller_' . $controller_name;
+		$class_name = 'controller_' . $controller_name;
 
 		$controller = new $class_name;
 
@@ -60,7 +60,7 @@ class Framewerk_Dispatcher
 
 			// If data_source is empty, do not create the request object
 			// This allows actions to actually check whether an action should be performed, or just view.
-			if(!empty($request_data)) $controller->request = new Framewerk_Request($action_definition, $request_data);
+			if(!empty($request_data)) $controller->request = new framewerk_Request($action_definition, $request_data);
 		}
 
 		// Pass input data back to the view - before action, so action can overwrite if needed

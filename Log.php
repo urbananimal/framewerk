@@ -1,5 +1,5 @@
 <?php
-class Framewerk_Log
+class framewerk_Log
 {
 	const EXCEPTION_FILENAME = 'exceptions';
 	const ERROR_FILENAME = 'errors';
