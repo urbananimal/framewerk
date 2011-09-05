@@ -37,7 +37,7 @@ class framewerk_views_ViewHTML extends framewerk_views_View
 		}
 
 		// Else, directly load the template
-		include Config::getTemplatePath().'/'.$this->controller.'/'.$this->template_name.'.tpl.php';
+		include Config::getTemplatePath().'/'. strtolower($this->controller) .'/'.$this->template_name.'.tpl.php';
 	}
 
 	public function setLayout($layout_name)
