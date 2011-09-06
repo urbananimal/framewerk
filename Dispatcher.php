@@ -77,13 +77,10 @@ class framewerk_Dispatcher
 		{
 			if(!$controller->request->isValid())
 			{
-				foreach($controller->request->getInvalidObjects() as $input_data)
+				foreach($controller->request->getInvalidObjects() as $field_name => $input_data_object)
 				{
 					// If this field has a message					
-					if( ($message = $input_data->getError()) )
-					{
-						$controller->view->setNotice($message);
-					}
+					if( ($message = $input_data_object->getError()) ) $controller->view->setNotice($message, framewerk_Notice::TYPE_ERROR, $field_name);
 				}
 			}
 		}

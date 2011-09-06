@@ -39,11 +39,13 @@ abstract class framewerk_views_View
 	 * Adds a notice to be rendered by the View's renderNotices() method.
 	 * 
 	 * @param $notice string
+	 * @param $notice_type
+	 * @param $identifier - Allows notices to be grouped or organised when rendered in the view. 
 	 * @return void
 	 */
-	public function setNotice($notice, $notice_type = framewerk_Notice::TYPE_ERROR)
+	public function setNotice($notice, $notice_type = framewerk_Notice::TYPE_ERROR, $identifier = null)
 	{
-		framewerk_Notice::setNotice($notice, $notice_type);
+		framewerk_Notice::setNotice($notice, $notice_type, $identifier);
 	}
 
 	/**
