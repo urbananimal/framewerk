@@ -17,7 +17,7 @@ class framewerk_InputData
 	private $error;
 	private $number_range;
 
-	private $valid = false; // default to false
+	private $is_valid = false; // default to false
 
 	/**
 	 * Configures this input data object
@@ -34,7 +34,7 @@ class framewerk_InputData
 		if(!$this->value && array_key_exists('default', $input_definition))
 		{
 			$this->value = $input_definition['default'];
-			$this->setStatus(true);
+			$this->setIsValid(true);
 			return;
 		}
 
@@ -66,7 +66,7 @@ class framewerk_InputData
 		$object_valid = $this->filterData($value);
 
 		// Set the status
-		$this->setStatus($object_valid);
+		$this->setIsValid($object_valid);
 	}
 
 	/**
@@ -138,12 +138,12 @@ class framewerk_InputData
 	
 	public function isValid()
 	{
-		return $this->valid;
+		return $this->is_valid;
 	}
 	
-	public function setStatus($bool, $hide_default_message = false)
+	public function setIsValid($bool, $hide_default_message = false)
 	{
-		$this->valid = $bool;
+		$this->is_valid = $bool;
 		
 		if($hide_default_message)
 		{
@@ -169,7 +169,7 @@ class framewerk_InputData
 	public function setError($error_msg)
 	{
 		$this->error = $error_msg;
-		$this->valid = false;
+		$this->is_valid = false;
 	}
 	
 	public function setValue($value)
