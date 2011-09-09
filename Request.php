@@ -70,11 +70,11 @@ class framewerk_Request
 	{
 		$invalid_objects = array();
 		
-		foreach($this->input_data_objects AS $input_data_object)
+		foreach($this->input_data_objects as $name => $input_data_object)
 		{
 			if(!$input_data_object->isValid())
 			{
-				$invalid_objects[] = $input_data_object;
+				$invalid_objects[$name] = $input_data_object;
 			}
 		}
 
