@@ -28,7 +28,7 @@ interface framewerk_Config
 	 * @return string
 	 */
 	public static function getApplicationRoot();
-	
+
 	/**
 	 * Return an array consisting of DSN (data source name), username and password
 	 * 
