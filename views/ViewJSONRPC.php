@@ -53,7 +53,7 @@ class framewerk_views_ViewJSONRPC extends framewerk_views_View
 				(
 					'view_data' => $this->view_data,
 					'elements' => $rendered_elements,
-					'template' => $this->template_name ? $this->captureTemplateOutput(Config::getTemplatePath().'/'. strtolower($this->controller) .'/'.$this->template_name.'.tpl.php') : null,
+					'template' => $this->template_name ? $this->captureTemplateOutput(Config::getTemplatePath().'/'. $this->template_controller .'/'.$this->template_name.'.tpl.php') : null,
 					'redirect' => $this->redirect_location,
 					'title' => $this->getTitle(),
 					'notices' => $this->renderNotices(framewerk_Notice::TYPE_SUCCESS)

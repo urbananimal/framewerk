@@ -3,10 +3,13 @@ class framewerk_views_ViewHTML extends framewerk_views_View
 {
 	// An array of CSS and JS filenames to be include in the <head> of the HTML template.
 	private $head_includes = array();
+
 	// The template to be rendered. Default to 'index'.
 	protected $template_name = 'index';
+
 	// The name of the layout
 	private $layout_name;
+
 	// The HTML <title> property value
 	public $page_title;
 
@@ -37,7 +40,7 @@ class framewerk_views_ViewHTML extends framewerk_views_View
 		}
 
 		// Else, directly load the template
-		include Config::getTemplatePath().'/'. strtolower($this->controller) .'/'.$this->template_name.'.tpl.php';
+		include Config::getTemplatePath().'/'. $this->template_controller .'/'.$this->template_name.'.tpl.php';
 	}
 
 	public function setLayout($layout_name)

@@ -10,12 +10,10 @@ if(Config::getEnvironment() < framewerk_Config::ENV_LIVE) require_once 'Debug.ph
  * @param unknown_type $errfile
  * @param unknown_type $errline
  */
-function errorHandler($error_num, $error_string, $errfile, $errline)
-{
-	throw new Exception($error_string, $error_num);
+function exception_error_handler($errno, $errstr, $errfile, $errline ) {
+    throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
 }
-
-set_error_handler('errorHandler');
+set_error_handler("exception_error_handler");
 
 /**
  * Dispatcher Class.

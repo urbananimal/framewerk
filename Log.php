@@ -2,7 +2,7 @@
 class framewerk_Log
 {
 	const EXCEPTION_FILENAME = 'exceptions';
-	const ERROR_FILENAME = 'errors';
+	const ERROR_FILENAME = 'error.log';
 	const MESSAGE_FILENAME = 'messages';
 	
 	/**
@@ -44,7 +44,7 @@ class framewerk_Log
 	{
 		$time = date("Y-m-d G:i:s");
 		$msg = $time .' '. $message."\r\n\r\n";
-		$log_path = dirname(__FILE__) . '/../logs/' . APPLICATION_NAME . '/' . $filename;
+		$log_path = Config::getApplicationRoot() .'/'. $filename;
 
 		error_log($msg, 3, $log_path);
 	}

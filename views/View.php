@@ -2,6 +2,7 @@
 abstract class framewerk_views_View
 {
 	protected $template_name;
+	protected $template_controller;
 
 	protected $view_data = array(); // All data available to views
 
@@ -20,8 +21,10 @@ abstract class framewerk_views_View
 		$this->view_data = $view_data + $this->view_data;
 	}
 
-	public function setTemplate($template_name)
+	public function setTemplate($template_name, $controller = null)
 	{
+		if($controller) $this->template_controller = $controller;
+
 		$this->template_name = $template_name;
 	}
 
@@ -104,7 +107,8 @@ abstract class framewerk_views_View
 	
 	public function setController($controller)
 	{
-		$this->controller = $controller;
+		// Template controller defaults to controller.
+		$this->controller = $this->template_controller = strtolower($controller);
 	}
 	
 	public function setAction($action)
