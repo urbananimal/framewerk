@@ -71,6 +71,10 @@ interface framewerk_Config
 	public static function getEmailLayoutPath();
 	
 	public static function getSiteUrl();
-
+	
+	/**
+	 * Should return NULL unless you want to force a specififc router.
+	 */
+	public static function getRouter();
 }
 ?>

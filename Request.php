@@ -12,7 +12,8 @@ class framewerk_Request
 	const SOURCE_POST = 0;
 	const SOURCE_GET = 1;
 	const SOURCE_REQUEST = 2;
-	
+	const SOURCE_REQUEST_BODY_JSON = 3;
+
 	public $input_data_objects = array();
 
 	public function __construct(array $action_definition, $source_data)
