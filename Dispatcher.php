@@ -41,6 +41,12 @@ class framewerk_Dispatcher
 
 		// Else, try and call the action sent in request string. If that does not exist, try and get the controllers default action
 		$action =  is_callable(array($controller, $action_name)) ? $action_name : $controller->default_action;
+		
+		if(!$action)
+		{
+			header("HTTP/1.0 404 Not Found");
+			exit;
+		}
 
 		// Set some view defaults. Templates are mapped to ControllerName/actionName.tpl.php
 		$controller->view->setController($controller_name);
@@ -61,15 +67,19 @@ class framewerk_Dispatcher
 			if(!empty($request_data)) $controller->request = new framewerk_Request($action_definition, $request_data);
 		}
 
+		/*
 		// Pass input data back to the view - before action, so action can overwrite if needed
+		// @note This line is extremely useful for most web apps, but not all. Perhaps it should be included in an app controller, rather than the dispatcher.
 		if($controller->request)
 		{
 			$controller->view->setData($controller->request->input_data_objects);
 		}
+		*/
 
 		// Call the action
 		$controller->$action();
 		
+		/*
 		// Check for invalid / invalidated data, create notices
 		if($controller->request)
 		{
@@ -82,6 +92,7 @@ class framewerk_Dispatcher
 				}
 			}
 		}
+		*/
 
 		// Render the view.
 		$controller->view->render();

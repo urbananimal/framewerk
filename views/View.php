@@ -110,7 +110,7 @@ abstract class framewerk_views_View
 		// Template controller defaults to controller.
 		$this->controller = $this->template_controller = strtolower($controller);
 	}
-	
+
 	public function setAction($action)
 	{
 		$this->action = $action;
@@ -126,10 +126,10 @@ abstract class framewerk_views_View
 
 	// Renders additional elements 
 	abstract protected function renderElement($element_name);
-	
+
 	// Render any notices set in the controller
 	abstract protected function renderNotices($notice_type);
-	
+
 	abstract public function redirect($where);
 }
 ?>
