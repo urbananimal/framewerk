@@ -35,6 +35,13 @@ interface framewerk_Config
 	 * @return array
 	 */
 	public static function getDbDsnAuth();
+	
+	/**
+	 * Return a key=>value array of PDO driver-specific connection options.
+	 * 
+	 * @return array
+	 */
+	public static function getDBDriverOptions();
 
 	/**
 	 * Return the absolute path to ViewHtml templates

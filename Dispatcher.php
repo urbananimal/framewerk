@@ -78,7 +78,7 @@ class framewerk_Dispatcher
 
 		// Call the action
 		$controller->$action();
-		
+
 		/*
 		// Check for invalid / invalidated data, create notices
 		if($controller->request)

@@ -100,7 +100,12 @@ class framewerk_InputData
 		// Actually filter
 
 		// If this is optional and we received an empty string, take precedence over other checks.
-		if($this->optional && $value == '') return true;
+		if($this->optional && $value == '')
+		{
+			// Set the value to NULL so we can diffrentiate between valid values and optional, empty values
+			$this->value = null;
+			return true;
+		}
 
 		// Check max length
 		if($this->max_length && strlen($value) > $this->max_length) return false;

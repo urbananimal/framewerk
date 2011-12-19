@@ -45,7 +45,7 @@ class framewerk_Request
 		
 		return true;
 	}
-	
+
 	/**
 	 * Overloading. Allows easy access to input_data objects from within a controller
 	 * 
@@ -81,7 +81,7 @@ class framewerk_Request
 
 		return $invalid_objects;
 	}
-	
+
 	/**
 	 * Returns an array of valus from the Request object.
 	 * 
@@ -89,7 +89,7 @@ class framewerk_Request
 	 * @return array
 	 */
 	public function extractValues($bool_valid = true)
-	{		
+	{
 		$values = array();
 		
 		foreach($this->input_data_objects AS $key => $input_data_object)
@@ -102,8 +102,7 @@ class framewerk_Request
 
 		return $values;
 	}
-	
-	
+
 	public function extractNotices($bool_valid = true)
 	{
 		$values = array();
@@ -114,6 +113,7 @@ class framewerk_Request
 				$values[$key] = $input_data_object->getError();
 			}
 		}
+
 		return $values;
 	}
 }
