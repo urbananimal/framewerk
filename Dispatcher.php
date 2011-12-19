@@ -67,14 +67,12 @@ class framewerk_Dispatcher
 			if(!empty($request_data)) $controller->request = new framewerk_Request($action_definition, $request_data);
 		}
 
-		/*
 		// Pass input data back to the view - before action, so action can overwrite if needed
-		// @note This line is extremely useful for most web apps, but not all. Perhaps it should be included in an app controller, rather than the dispatcher.
-		if($controller->request)
+		if($controller->request && Config::populateViewWithRequestData())
 		{
 			$controller->view->setData($controller->request->input_data_objects);
 		}
-		*/
+
 
 		// Call the action
 		$controller->$action();

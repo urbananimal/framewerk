@@ -89,5 +89,17 @@ interface framewerk_Config
 	 * Views can be selected from framewerk_ViewFactory::TYPE...
 	 */
 	public static function getView();
+	
+	/**
+	 * Whether the dispatcher should automatically pass the request data to the view.
+	 * This is useful for most web applications and enables automatic error notices and highlighting for the HTMLHelper.
+	 * 
+	 * Reccomended to be left on unless you really don't want the data passed to the view, i.e. if you're using the RESTful view. 
+	 * 
+	 * @return boolean
+	 */
+	public static function populateViewWithRequestData();
+	
+	
 }
 ?>
